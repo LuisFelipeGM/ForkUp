@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS forkup.tipo_usuario (
 );
 
 CREATE TABLE IF NOT EXISTS forkup.usuario(
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     login VARCHAR(255) NOT NULL UNIQUE,
@@ -29,13 +29,13 @@ CREATE TABLE IF NOT EXISTS forkup.usuario(
 );
 
 CREATE TABLE IF NOT EXISTS forkup.endereco(
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     logradouro VARCHAR(255) NOT NULL,
     numero VARCHAR(20) NOT NULL,
     complemento VARCHAR(255),
     cidade VARCHAR(255) NOT NULL,
-    cep VARCHAR(20) NOT NULL,
-    usuario_id INTEGER NOT NULL,
+    cep VARCHAR(9) NOT NULL,
+    usuario_id BIGINT NOT NULL,
     status_id INTEGER NOT NULL,
     CONSTRAINT fk_endereco_usuario FOREIGN KEY (usuario_id) REFERENCES forkup.usuario (id),
     CONSTRAINT fk_endereco_status FOREIGN KEY (status_id) REFERENCES forkup.status (id)
