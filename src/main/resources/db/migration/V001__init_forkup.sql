@@ -48,17 +48,3 @@ INSERT INTO forkup.status (id, descricao) VALUES
 INSERT INTO forkup.tipo_usuario (id, descricao, status_id) VALUES
     (1, 'Dono de Restaurante', 1),
     (2, 'Cliente', 1);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
