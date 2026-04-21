@@ -1,3 +1,25 @@
 spring:
   application:
     name: ForkUp
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/forkup_db?currentSchema=forkup
+    username: admin
+    password: FoRkUpRM371055
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        default_schema: forkup
+        format_sql: true
+
+  flyway:
+    enabled: true
+    default-schema: forkup
+    schemas: forkup
+    locations: classpath:db/migration
+
