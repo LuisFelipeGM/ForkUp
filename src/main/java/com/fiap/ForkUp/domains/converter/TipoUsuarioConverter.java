@@ -1,6 +1,6 @@
-package com.fiap.ForkUp.domain.converter;
+package com.fiap.ForkUp.domains.converter;
 
-import com.fiap.ForkUp.domain.enumeration.TipoUsuarioEnum;
+import com.fiap.ForkUp.domains.enumeration.TipoUsuarioEnum;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
