@@ -1,7 +1,7 @@
-package com.fiap.ForkUp.domain.entity;
+package com.fiap.ForkUp.domains.entity;
 
-import com.fiap.ForkUp.domain.converter.StatusEnumConverter;
-import com.fiap.ForkUp.domain.enumeration.StatusEnum;
+import com.fiap.ForkUp.domains.converter.StatusEnumConverter;
+import com.fiap.ForkUp.domains.enumeration.StatusEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
