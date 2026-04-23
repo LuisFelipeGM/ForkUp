@@ -1,6 +1,6 @@
-package com.fiap.ForkUp.repositories;
+package com.fiap.forkup.repository;
 
-import com.fiap.ForkUp.domains.entity.Endereco;
+import com.fiap.forkup.domain.entity.Endereco;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

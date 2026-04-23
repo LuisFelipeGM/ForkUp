@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS forkup.endereco(
     complemento VARCHAR(255),
     cidade VARCHAR(255) NOT NULL,
     cep VARCHAR(9) NOT NULL,
+    data_criacao TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     usuario_id BIGINT NOT NULL,
     status_id INTEGER NOT NULL,
     CONSTRAINT fk_endereco_usuario FOREIGN KEY (usuario_id) REFERENCES forkup.usuario (id),
@@ -43,7 +44,8 @@ CREATE TABLE IF NOT EXISTS forkup.endereco(
 
 INSERT INTO forkup.status (id, descricao) VALUES
     (1, 'ATIVO'),
-    (2, 'EXCLUIDO');
+    (2, 'EXCLUIDO'),
+    (3, 'INATIVO');
 
 INSERT INTO forkup.tipo_usuario (id, descricao, status_id) VALUES
     (1, 'Dono de Restaurante', 1),

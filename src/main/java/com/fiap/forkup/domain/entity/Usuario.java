@@ -1,9 +1,9 @@
-package com.fiap.ForkUp.domains.entity;
+package com.fiap.forkup.domain.entity;
 
-import com.fiap.ForkUp.domains.converter.StatusEnumConverter;
-import com.fiap.ForkUp.domains.converter.TipoUsuarioConverter;
-import com.fiap.ForkUp.domains.enumeration.StatusEnum;
-import com.fiap.ForkUp.domains.enumeration.TipoUsuarioEnum;
+import com.fiap.forkup.domain.converter.StatusEnumConverter;
+import com.fiap.forkup.domain.converter.TipoUsuarioConverter;
+import com.fiap.forkup.domain.enumeration.StatusEnum;
+import com.fiap.forkup.domain.enumeration.TipoUsuarioEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +11,7 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -50,6 +51,9 @@ public class Usuario {
     @Column(name = "status_id")
     @Convert(converter = StatusEnumConverter.class)
     private StatusEnum status;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Endereco> enderecos;
 
     @PreUpdate
     @PreRemove

@@ -1,4 +1,4 @@
-package com.fiap.ForkUp;
+package com.fiap.forkup;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

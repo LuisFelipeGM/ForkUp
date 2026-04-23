@@ -1,4 +1,4 @@
-package com.fiap.ForkUp.domains.enumeration;
+package com.fiap.forkup.domain.enumeration;
 
 import lombok.Getter;
 
@@ -9,7 +9,8 @@ import java.util.Map;
 public enum StatusEnum {
 
     ATIVO(1, "Ativo"),
-    EXCLUIDO(2, "Excluido");
+    EXCLUIDO(2, "Excluido"),
+    INATIVO(3, "Inativo");
 
     private static final Map<Integer, StatusEnum> LOOKUP = new HashMap<>();
 

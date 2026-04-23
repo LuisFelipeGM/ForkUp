@@ -1,12 +1,14 @@
-package com.fiap.ForkUp.domains.entity;
+package com.fiap.forkup.domain.entity;
 
-import com.fiap.ForkUp.domains.converter.StatusEnumConverter;
-import com.fiap.ForkUp.domains.enumeration.StatusEnum;
+import com.fiap.forkup.domain.converter.StatusEnumConverter;
+import com.fiap.forkup.domain.enumeration.StatusEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -36,12 +38,15 @@ public class Endereco {
     @Column(name = "cep", length = 9)
     private String cep;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario_id", foreignKey = @ForeignKey(name = "fk_endereco_usuario"))
-    private Usuario usuario;
+    @Column(name = "data_criacao", insertable = false, updatable = false)
+    private LocalDateTime dataCriacao;
 
     @Column(name = "status_id")
     @Convert(converter = StatusEnumConverter.class)
     private StatusEnum status;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id", foreignKey = @ForeignKey(name = "fk_endereco_usuario"))
+    private Usuario usuario;
 
 }

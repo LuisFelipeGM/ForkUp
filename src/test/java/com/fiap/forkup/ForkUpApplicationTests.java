@@ -1,4 +1,4 @@
-package com.fiap.ForkUp;
+package com.fiap.forkup;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
