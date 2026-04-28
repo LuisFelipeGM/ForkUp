@@ -17,19 +17,24 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UsuarioVO {
 
-    @NotNull
+    public interface Create {}
+
+    public interface Update {}
+
+    @NotNull(groups = {Create.class, Update.class})
     private String nome;
 
-    @NotNull
-    @Email
+    @NotNull(groups = {Create.class, Update.class})
+    @Email(groups = {Create.class, Update.class})
     private String email;
 
-    @NotNull
+    @NotNull(groups = {Create.class, Update.class})
     private String login;
 
+    @NotNull(groups = Create.class, message = "Senha é obrigatória no cadastro")
     private String senha;
 
-    @NotNull
+    @NotNull(groups = {Create.class, Update.class})
     private TipoUsuarioEnum tipoUsuario;
 
 }

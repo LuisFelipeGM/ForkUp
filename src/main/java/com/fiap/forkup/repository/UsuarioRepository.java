@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Repository
@@ -33,8 +34,16 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     @Transactional
     @Modifying
     @Query("UPDATE Usuario u SET u.status = com.fiap.forkup.domain.enumeration.StatusEnum.EXCLUIDO, " +
-            "u.dataAtualizacao = CURRENT_TIMESTAMP " +
+            "u.dataAtualizacao = :dataAtualizacao " +
             "WHERE u.id = :idUsuario")
-    void excluirUsuario(@Param("idUsuario") Long idUsuario);
+    void excluirUsuario(@Param("idUsuario") Long idUsuario, @Param("dataAtualizacao") LocalDateTime dataAtualizacao);
+
+    boolean existsUsuarioByEmail(String email);
+
+    boolean existsUsuarioByEmailAndIdNot(String email, Long id);
+
+    boolean existsUsuarioByLogin(String login);
+
+    boolean existsUsuarioByLoginAndIdNot(String login, Long id);
 
 }

@@ -1,5 +1,6 @@
 package com.fiap.forkup.domain.entity;
 
+import com.fiap.forkup.constants.WhereStatusConstants;
 import com.fiap.forkup.domain.converter.StatusEnumConverter;
 import com.fiap.forkup.domain.converter.TipoUsuarioConverter;
 import com.fiap.forkup.domain.enumeration.StatusEnum;
@@ -9,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,6 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "usuario")
+@SQLRestriction(WhereStatusConstants.NOT_EQUALS_EXCLUIDO)
 public class Usuario {
 
     @Id
@@ -54,6 +57,11 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario")
     private List<Endereco> enderecos;
+
+    @PrePersist
+    private void statusAtivo() {
+        this.status = StatusEnum.ATIVO;
+    }
 
     @PreUpdate
     @PreRemove
