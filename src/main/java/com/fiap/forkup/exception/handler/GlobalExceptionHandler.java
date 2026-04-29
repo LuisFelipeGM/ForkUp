@@ -1,7 +1,7 @@
 package com.fiap.forkup.exception.handler;
 
 import com.fiap.forkup.domain.enumeration.ErrorCode;
-import com.fiap.forkup.domain.vo.FieldErrorDetail;
+import com.fiap.forkup.exception.dto.FieldErrorDetail;
 import com.fiap.forkup.exception.factory.ProblemDetailFactory;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Slf4j
