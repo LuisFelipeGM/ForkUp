@@ -1,4 +1,4 @@
-package com.fiap.ForkUp.domains.enumeration;
+package com.fiap.forkup.domain.enumeration;
 
 import lombok.Getter;
 

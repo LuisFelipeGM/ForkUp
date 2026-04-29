@@ -1,3 +1,6 @@
+server:
+  port: 3710
+
 spring:
   application:
     name: ForkUp
