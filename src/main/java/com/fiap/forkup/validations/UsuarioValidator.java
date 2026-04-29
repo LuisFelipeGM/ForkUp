@@ -5,7 +5,7 @@ import com.fiap.forkup.domain.entity.Usuario;
 import com.fiap.forkup.domain.vo.AlterarSenhaVO;
 import com.fiap.forkup.domain.vo.UsuarioVO;
 import com.fiap.forkup.exception.handler.BusinessException;
-import com.fiap.forkup.domain.vo.FieldErrorDetail;
+import com.fiap.forkup.exception.dto.FieldErrorDetail;
 import com.fiap.forkup.exception.handler.UsuarioNaoEncontradoException;
 import com.fiap.forkup.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-import static java.util.Objects.equals;
 import static java.util.Objects.isNull;
 
 @Slf4j

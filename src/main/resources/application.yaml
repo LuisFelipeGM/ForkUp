@@ -26,3 +26,6 @@ spring:
     schemas: forkup
     locations: classpath:db/migration
 
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

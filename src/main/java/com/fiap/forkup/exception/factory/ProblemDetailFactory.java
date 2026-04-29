@@ -10,11 +10,14 @@ import java.time.LocalDateTime;
 
 public class ProblemDetailFactory {
 
+    private static final String BASE_TYPE = "https://api.forkup.com/errors/";
+
     public static ProblemDetail create(HttpStatus httpStatus, String Title, String detail, String path, ErrorCode errorCode) {
 
         ProblemDetail problem = ProblemDetail.forStatus(httpStatus);
         problem.setTitle(Title);
         problem.setDetail(detail);
+        problem.setType(URI.create(BASE_TYPE + errorCode.name().toLowerCase()));
         problem.setInstance(URI.create(path));
         problem.setProperty("timestamp", LocalDateTime.now());
         problem.setProperty("errorCode", errorCode.name());
