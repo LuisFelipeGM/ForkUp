@@ -21,20 +21,20 @@ public class UsuarioVO {
 
     public interface Update {}
 
-    @NotNull(groups = {Create.class, Update.class})
+    @NotNull(groups = {Create.class, Update.class}, message = "Nome é obrigatório")
     private String nome;
 
-    @NotNull(groups = {Create.class, Update.class})
+    @NotNull(groups = {Create.class, Update.class}, message = "Email é obrigatório")
     @Email(groups = {Create.class, Update.class})
     private String email;
 
-    @NotNull(groups = {Create.class, Update.class})
+    @NotNull(groups = {Create.class, Update.class}, message = "Login é obrigatório")
     private String login;
 
     @NotNull(groups = Create.class, message = "Senha é obrigatória no cadastro")
     private String senha;
 
-    @NotNull(groups = {Create.class, Update.class})
+    @NotNull(groups = {Create.class, Update.class}, message = "Tipo de usuário é obrigatório")
     private TipoUsuarioEnum tipoUsuario;
 
 }

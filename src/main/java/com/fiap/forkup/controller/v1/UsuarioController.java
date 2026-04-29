@@ -2,9 +2,10 @@ package com.fiap.forkup.controller.v1;
 
 import com.fiap.forkup.domain.dto.IdentifierDTO;
 import com.fiap.forkup.domain.dto.UsuarioDTO;
+import com.fiap.forkup.domain.vo.AlterarSenhaVO;
 import com.fiap.forkup.domain.vo.UsuarioVO;
-import com.fiap.forkup.exception.BusinessException;
-import com.fiap.forkup.exception.UsuarioNaoEncontradoException;
+import com.fiap.forkup.exception.handler.BusinessException;
+import com.fiap.forkup.exception.handler.UsuarioNaoEncontradoException;
 import com.fiap.forkup.service.UsuarioService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -40,13 +41,13 @@ public class UsuarioController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public IdentifierDTO cadastrar(@Valid @RequestBody UsuarioVO usuarioVO) throws BusinessException {
+    public IdentifierDTO cadastrar(@Validated(UsuarioVO.Create.class) @RequestBody UsuarioVO usuarioVO) throws BusinessException {
         return usuarioService.create(usuarioVO);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public UsuarioDTO atualizar(@PathVariable Long id, @Valid @RequestBody UsuarioVO usuarioVO) throws BusinessException {
+    public UsuarioDTO atualizar(@PathVariable Long id, @Validated(UsuarioVO.Update.class) @RequestBody UsuarioVO usuarioVO) throws BusinessException {
         return usuarioService.update(id, usuarioVO);
     }
 
@@ -54,5 +55,11 @@ public class UsuarioController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletar(@PathVariable Long id) throws UsuarioNaoEncontradoException {
         usuarioService.delete(id);
+    }
+
+    @PutMapping("/{id}/senha")
+    @ResponseStatus(HttpStatus.OK)
+    public void trocarSenha(@PathVariable Long id, @Valid @RequestBody AlterarSenhaVO alterarSenhaVO) throws BusinessException {
+        usuarioService.alterarSenha(id, alterarSenhaVO);
     }
 }

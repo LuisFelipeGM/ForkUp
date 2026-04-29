@@ -3,9 +3,10 @@ package com.fiap.forkup.service;
 import com.fiap.forkup.domain.dto.IdentifierDTO;
 import com.fiap.forkup.domain.dto.UsuarioDTO;
 import com.fiap.forkup.domain.entity.Usuario;
+import com.fiap.forkup.domain.vo.AlterarSenhaVO;
 import com.fiap.forkup.domain.vo.UsuarioVO;
-import com.fiap.forkup.exception.BusinessException;
-import com.fiap.forkup.exception.UsuarioNaoEncontradoException;
+import com.fiap.forkup.exception.handler.BusinessException;
+import com.fiap.forkup.exception.handler.UsuarioNaoEncontradoException;
 import com.fiap.forkup.mapper.UsuarioMapper;
 import com.fiap.forkup.repository.UsuarioRepository;
 import com.fiap.forkup.validations.UsuarioValidator;
@@ -13,6 +14,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,6 +30,8 @@ public class UsuarioService {
     private UsuarioValidator usuarioValidator;
 
     private UsuarioMapper usuarioMapper;
+
+    private PasswordEncoder passwordEncoder;
 
 
     public Page<UsuarioDTO> listaPaginada(String nome, Pageable pageable) {
@@ -47,7 +51,7 @@ public class UsuarioService {
         usuarioValidator.createValidation(usuarioVO);
 
         Usuario usuario = usuarioMapper.toEntity(usuarioVO);
-        usuario.setSenha(usuarioVO.getSenha());
+        usuario.setSenha(passwordEncoder.encode(usuarioVO.getSenha()));
 
         usuario = usuarioRepository.save(usuario);
 
@@ -85,7 +89,24 @@ public class UsuarioService {
 
         usuarioRepository.excluirUsuario(id, LocalDateTime.now());
 
-        log.info("Exclusão do usuário com ID: {} - Realizado com sucesso.", id);
+        log.info("Exclusão de usuário com o ID: {} - Realizado com sucesso.", id);
+    }
+
+    @Transactional(rollbackFor = BusinessException.class)
+    public void alterarSenha(final Long id, final AlterarSenhaVO alterarSenhaVO) throws BusinessException {
+
+        log.info("Iniciando a troca de senha do usuário com ID: {}", id);
+
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(UsuarioNaoEncontradoException::new);
+
+        usuarioValidator.changePasswordValidation(usuario, alterarSenhaVO);
+
+        usuario.setSenha(passwordEncoder.encode(alterarSenhaVO.getNovaSenha()));
+
+        usuarioRepository.save(usuario);
+
+        log.info("Troca de senha do usuário com ID: {} - Realizado com sucesso.", id);
     }
 
 }
