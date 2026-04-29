@@ -75,7 +75,7 @@ public class UsuarioService {
         usuarioMapper.updateUsuarioFromVO(usuarioVO, usuario);
         usuario = usuarioRepository.save(usuario);
 
-        log.info("Atualização de usuário com o ID: {} - Realizado com sucesso.", id);
+        log.info("** SAYONARA ** - Atualização de usuário com o ID: {} - Realizado com sucesso.", id);
 
         return usuarioMapper.toDTO(usuario);
     }
@@ -89,7 +89,7 @@ public class UsuarioService {
 
         usuarioRepository.excluirUsuario(id, LocalDateTime.now());
 
-        log.info("Exclusão de usuário com o ID: {} - Realizado com sucesso.", id);
+        log.info("** SAYONARA ** - Exclusão de usuário com o ID: {} - Realizado com sucesso.", id);
     }
 
     @Transactional(rollbackFor = BusinessException.class)
@@ -106,7 +106,7 @@ public class UsuarioService {
 
         usuarioRepository.save(usuario);
 
-        log.info("Troca de senha do usuário com ID: {} - Realizado com sucesso.", id);
+        log.info("** SAYONARA ** - Troca de senha do usuário com ID: {} - Realizado com sucesso.", id);
     }
 
 }
