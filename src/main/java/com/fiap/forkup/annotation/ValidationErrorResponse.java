@@ -1,4 +1,4 @@
-package com.fiap.forkup.exception.annotation;
+package com.fiap.forkup.annotation;
 
 import com.fiap.forkup.exception.dto.ApiProblem;
 import io.swagger.v3.oas.annotations.media.Content;
