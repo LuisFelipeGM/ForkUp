@@ -20,7 +20,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     @Query(value = "SELECT NEW com.fiap.forkup.domain.dto.UsuarioDTO(" +
             "u.id, u.nome, u.email, u.login, u.tipoUsuario, u.status, u.dataCriacao, u.dataAtualizacao) " +
             "FROM Usuario u " +
-            "WHERE (:nome IS NULL OR :nome = '' OR LOWER(u.nome) LIKE LOWER(CONCAT('%', :nome, '%')))",
+            "WHERE (:nome IS NULL OR :nome = '' OR LOWER(u.nome) LIKE LOWER(CONCAT('%', :nome, '%'))) ORDER BY u.id ASC ",
             countQuery = "SELECT COUNT(u.id) FROM Usuario u " +
                     "WHERE (:nome IS NULL OR :nome = '' OR LOWER(u.nome) LIKE LOWER(CONCAT('%', :nome, '%')))")
     Page<UsuarioDTO> findAllPaginado(@Param("nome") String nome, Pageable pageable);
@@ -37,6 +37,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
             "u.dataAtualizacao = :dataAtualizacao " +
             "WHERE u.id = :idUsuario")
     void excluirUsuario(@Param("idUsuario") Long idUsuario, @Param("dataAtualizacao") LocalDateTime dataAtualizacao);
+
+    Usuario findByLogin(String login);
 
     boolean existsUsuarioByEmail(String email);
 

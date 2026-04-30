@@ -73,11 +73,11 @@ public class UsuarioService {
         usuarioValidator.updateValidation(usuarioVO, id);
 
         usuarioMapper.updateUsuarioFromVO(usuarioVO, usuario);
-        usuario = usuarioRepository.save(usuario);
+        usuarioRepository.save(usuario);
 
         log.info("** SAYONARA ** - Atualização de usuário com o ID: {} - Realizado com sucesso.", id);
 
-        return usuarioMapper.toDTO(usuario);
+        return usuarioRepository.findByIdUsuario(id).orElseThrow(UsuarioNaoEncontradoException::new);
     }
 
     @Transactional(rollbackFor = BusinessException.class)

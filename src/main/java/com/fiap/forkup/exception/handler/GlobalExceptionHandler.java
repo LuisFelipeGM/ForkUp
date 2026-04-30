@@ -39,7 +39,7 @@ public class GlobalExceptionHandler {
         List<FieldErrorDetail> fields = ex.getBindingResult().getFieldErrors()
                 .stream()
                 .map(err -> new FieldErrorDetail(err.getField(), err.getDefaultMessage()))
-                .collect(Collectors.toList());
+                .toList();
 
         problem.setProperty("fields", fields);
 
