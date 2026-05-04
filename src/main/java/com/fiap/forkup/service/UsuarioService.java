@@ -38,7 +38,7 @@ public class UsuarioService {
         return usuarioRepository.findAllPaginado(nome, pageable);
     }
 
-    public UsuarioDTO buscarPorId(final Long id) throws UsuarioNaoEncontradoException {
+    public UsuarioDTO findById(final Long id) throws UsuarioNaoEncontradoException {
         return usuarioRepository.findByIdUsuario(id)
                 .orElseThrow(UsuarioNaoEncontradoException::new);
     }

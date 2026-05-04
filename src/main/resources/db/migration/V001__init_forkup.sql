@@ -58,3 +58,9 @@ INSERT INTO forkup.usuario (nome, email, login, senha, tipo_usuario_id, status_i
     ('Cliente da Silva', 'cliente@gmail.com', 'cliente45', '$2a$12$G9T.aYTQMtwAvbq.eFab8enbM95jYj/w0hlrOiBMYBTIPCBqml8uW', 2, 1),
     ('Arthur Pereira', 'arthur@gmail.com', 'Arthurzin', '$2a$12$.x7J7TUnhTSATzFlby2tcuesFZDmTRvfFrf0f/iBG9dPClMsDzjBe', 2, 1),
     ('Usuário Erros Duplicado', 'usuario.erros.duplicados@gmail.com', 'usuarioErrosDuplicados', '$2a$12$64lfVjrzOlq/rP3lO4avYu5LSHwpRCkG9Ek6u007MwGJ3ttmCTJy6', 2, 1);
+
+-- Criando Endereços para exemplos nos endpoints
+INSERT INTO forkup.endereco (logradouro, numero, complemento, cidade, cep, usuario_id, status_id) VALUES
+    ('Rua das Flores', '123', 'Apto 456', 'São Paulo', '01234-567', 1, 1),
+    ('Avenida Brasil', '456', 'Casa', 'Rio de Janeiro', '23456-789', 3, 1),
+    ('Rua dos Pinheiros', '789', NULL, 'Belo Horizonte', '34567-890', 4, 1);
