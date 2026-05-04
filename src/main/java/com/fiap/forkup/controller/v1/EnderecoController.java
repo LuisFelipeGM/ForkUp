@@ -48,6 +48,7 @@ public class EnderecoController {
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Lista endereços de um usuário", description = "Retorna uma lista de endereços associados a um usuário específico")
     @ApiResponse(responseCode = "200", description = "Lista de endereços retornada com sucesso")
+    @NotFoundErrorReponse
     public List<EnderecoDTO> findAllEnderecoUsuario(@Parameter(description = "Identificador do Usuário", example = "1") @PathVariable final Long idUsuario) throws UsuarioNaoEncontradoException {
         return enderecoService.findAllEnderecoUsuario(idUsuario);
     }
