@@ -2,6 +2,7 @@ package com.fiap.forkup.repository;
 
 import com.fiap.forkup.domain.dto.UsuarioDTO;
 import com.fiap.forkup.domain.entity.Usuario;
+import com.fiap.forkup.domain.enumeration.TipoUsuarioEnum;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -47,5 +48,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     boolean existsUsuarioByLogin(String login);
 
     boolean existsUsuarioByLoginAndIdNot(String login, Long id);
+
+    @Query("SELECT u.tipoUsuario FROM Usuario u WHERE u.id = :id")
+    TipoUsuarioEnum findTipoUsuarioById(Long id);
 
 }

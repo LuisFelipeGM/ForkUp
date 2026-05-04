@@ -54,8 +54,8 @@ public class UsuarioController {
     @Operation(summary = "Busca usuario por id", description = "Retorna os dados de um usuario especifico")
     @ApiResponse(responseCode = "200", description = "Usuario encontrado")
     @NotFoundErrorReponse
-    public UsuarioDTO buscarPorId(@Parameter(description = "Identificador do usuario", example = "1") @PathVariable Long id) throws UsuarioNaoEncontradoException {
-        return usuarioService.buscarPorId(id);
+    public UsuarioDTO findById(@Parameter(description = "Identificador do usuario", example = "1") @PathVariable Long id) throws UsuarioNaoEncontradoException {
+        return usuarioService.findById(id);
     }
 
     @PostMapping
@@ -63,7 +63,7 @@ public class UsuarioController {
     @Operation(summary = "Cadastra um novo usuario", description = "Cria um novo usuario com os dados fornecidos")
     @ApiResponse(responseCode = "201", description = "Usuario criado com sucesso", content = @Content(schema = @Schema(implementation = IdentifierDTO.class)))
     @ValidationErrorResponse
-    public IdentifierDTO cadastrar(@Validated(UsuarioVO.Create.class) @RequestBody UsuarioVO usuarioVO) throws BusinessException {
+    public IdentifierDTO create(@Validated(UsuarioVO.Create.class) @RequestBody UsuarioVO usuarioVO) throws BusinessException {
         return usuarioService.create(usuarioVO);
     }
 
@@ -73,7 +73,7 @@ public class UsuarioController {
     @ApiResponse(responseCode = "200", description = "Usuario atualizado com sucesso")
     @ValidationErrorResponse
     @NotFoundErrorReponse
-    public UsuarioDTO atualizar(@Parameter(description = "Identificador do usuario", example = "1") @PathVariable Long id,
+    public UsuarioDTO update(@Parameter(description = "Identificador do usuario", example = "1") @PathVariable Long id,
             @RequestBody @Validated(UsuarioVO.Update.class) UsuarioVO usuarioVO) throws BusinessException {
         return usuarioService.update(id, usuarioVO);
     }
@@ -83,7 +83,7 @@ public class UsuarioController {
     @Operation(summary = "Remove usuario por id", description = "Deleta um usuario existente")
     @ApiResponse(responseCode = "204", description = "Usuario removido com sucesso")
     @NotFoundErrorReponse
-    public void deletar(@Parameter(description = "Identificador do usuario", example = "1") @PathVariable Long id) throws UsuarioNaoEncontradoException {
+    public void delete(@Parameter(description = "Identificador do usuario", example = "1") @PathVariable Long id) throws UsuarioNaoEncontradoException {
         usuarioService.delete(id);
     }
 

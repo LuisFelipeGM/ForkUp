@@ -25,7 +25,7 @@ import static java.util.Objects.isNull;
 @Slf4j
 @AllArgsConstructor
 @Component
-public class UsuarioValidator {
+public class UsuarioValidator extends Validator {
 
     private static final Pattern SENHA_FORTE_PATTERN =
             Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^A-Za-z\\d]).{8,}$");
@@ -89,7 +89,7 @@ public class UsuarioValidator {
         log.info("Finalizando a validação da troca de senha do usuário com ID: {}", usuario.getId());
     }
 
-    private void validateUsuarioExists(final Long id) throws UsuarioNaoEncontradoException {
+    public void validateUsuarioExists(final Long id) throws UsuarioNaoEncontradoException {
 
         if (BooleanUtils.isFalse(usuarioRepository.existsById(id))) {
             log.warn("Usuário com ID: {} - Não foi encontrado", id);
@@ -98,14 +98,14 @@ public class UsuarioValidator {
 
     }
 
-    private void validateEmail(final String email, final Long id, List<FieldErrorDetail> errors) throws BusinessException {
+    private void validateEmail(final String email, final Long id, List<FieldErrorDetail> errors) {
 
         boolean exists = isNull(id) ? usuarioRepository.existsUsuarioByEmail(email) : usuarioRepository.existsUsuarioByEmailAndIdNot(email, id);
 
         validateUniqueField(exists, "Email", errors);
     }
 
-    private void validateLogin(final String login, final Long id, List<FieldErrorDetail> errors) throws BusinessException {
+    private void validateLogin(final String login, final Long id, List<FieldErrorDetail> errors) {
 
         boolean exists = isNull(id) ? usuarioRepository.existsUsuarioByLogin(login) : usuarioRepository.existsUsuarioByLoginAndIdNot(login, id);
 
@@ -156,14 +156,5 @@ public class UsuarioValidator {
         }
 
     }
-
-    private void existErrors(List<FieldErrorDetail> errors) throws BusinessException {
-
-        if (!errors.isEmpty()) {
-            throw new BusinessException("Erro de validação", HttpStatus.BAD_REQUEST, ErrorCode.VALIDATION_ERROR).addMetadata("fields", errors);
-        }
-
-    }
-
 
 }

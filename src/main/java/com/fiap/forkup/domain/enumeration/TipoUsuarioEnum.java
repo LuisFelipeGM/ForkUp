@@ -8,8 +8,8 @@ import java.util.Map;
 @Getter
 public enum TipoUsuarioEnum {
 
-    DONO_RESTAURANTE(1, "Dono de Restaurante"),
-    CLIENTE(2, "Cliente");
+    DONO_RESTAURANTE(1, "Dono de Restaurante", 2),
+    CLIENTE(2, "Cliente", 1);
 
     private static final Map<Integer, TipoUsuarioEnum> LOOKUP = new HashMap<>();
 
@@ -25,9 +25,11 @@ public enum TipoUsuarioEnum {
 
     private Integer id;
     private String descricao;
+    private Integer limiteEnderecos;
 
-    TipoUsuarioEnum(final Integer id, final String descricao) {
+    TipoUsuarioEnum(final Integer id, final String descricao, final Integer limiteEnderecos) {
         this.id = id;
         this.descricao = descricao;
+        this.limiteEnderecos = limiteEnderecos;
     }
 }
