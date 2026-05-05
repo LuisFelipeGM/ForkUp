@@ -8,6 +8,10 @@ Projeto do Tech Challenge da 1ª fase da Pós-Graduação em **Arquitetura e Des
 ![Spring](https://img.shields.io/badge/SpringBoot-green)
 ![Docker](https://img.shields.io/badge/Docker-blue)
 ---
+## Entregavéis:
+1° Fase - [1 Fase - ForkUp - Tech Challenge.pdf](1%20Fase%20-%20ForkUp%20-%20Tech%20Challenge.pdf)
+
+---
 
 # 🎯 Visão Geral
 
