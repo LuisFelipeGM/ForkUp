@@ -139,7 +139,7 @@ Acesse:
 ## 🧪 Postman Collection
 
 Uma collection está disponível no projeto:
-- **Arquivo**: `ForkUp_postman_collection.json`
+- **Arquivo**: [`ForkUp_postman_collection.json`](ForkUp_postman_collection.json)
 - Importe no Postman para testar todos os endpoints com cenários prontos.
 
 ---
@@ -193,10 +193,5 @@ com.fiap.forkup/
 
 # 📄 Licença
 - Este projeto é acadêmico e de uso educacional.
-
----
-# ⭐ Autor
-**Luis Felipe G. M.** - [GitHub](https://github.com/LuisFelipeGM)
-
 
 
